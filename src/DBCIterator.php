@@ -22,10 +22,12 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
+namespace Timkurvers\WowDbcPhp;
+
 /**
  * Allows iteration over DBC records
  */
-class DBCIterator implements Iterator {
+class DBCIterator implements \Iterator {
 
 	/**
 	 * Holds a reference to the DBC being iterated

@@ -22,9 +22,10 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
-error_reporting(E_ALL | E_STRICT);
+use Timkurvers\WowDbcPhp\DBC;
+use Timkurvers\WowDbcPhp\DBCMap;
 
-require('../lib/bootstrap.php');
+require('bootstrap.php');
 
 /**
  * This example shows how to generate a DBC mapping by sampling a given DBC

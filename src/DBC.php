@@ -22,10 +22,12 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
+namespace Timkurvers\WowDbcPhp;
+
 /**
  * Represents a World of Warcraft DBC
  */
-class DBC implements IteratorAggregate {
+class DBC implements \IteratorAggregate {
 
 	/**
 	 * Version of the World of Warcraft DBC Library

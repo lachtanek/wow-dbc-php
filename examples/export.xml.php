@@ -22,9 +22,11 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
-error_reporting(E_ALL | E_STRICT);
+use Timkurvers\WowDbcPhp\DBC;
+use Timkurvers\WowDbcPhp\DBCMap;
+use Timkurvers\WowDbcPhp\Exporters\DBCXMLExporter;
 
-require('../lib/bootstrap.php');
+require('bootstrap.php');
 
 /**
  * This example shows how to export a DBC-file to XML format

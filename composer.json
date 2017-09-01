@@ -1,0 +1,24 @@
+{
+	"name": "timkurvers/wow-dbc-php",
+	"type": "library",
+	"description": "Manipulation of World of Warcraft's client-side database files in PHP",
+	"keywords": ["wow", "world of warcraft", "dbc"],
+	"license": ["MIT"],
+	"authors": [
+		{
+			"name": "Tim Kurvers",
+			"homepage": "https://github.com/timkurvers"
+		},
+		{
+			"name": "Jakub Hrabec",
+			"homepage": "http://lachtan.net"
+		}
+	],
+	"require": {
+		"php": ">=5.3",
+	},
+	"autoload": {
+		"psr-4": { "Timkurvers\\WowDbcPhp\\": "src" }
+	},
+	"minimum-stability": "dev"
+}

@@ -22,48 +22,11 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
+namespace Timkurvers\WowDbcPhp;
+
 /**
- * JSON Exporter
+ * Dummy exception thrown by DBC library components
  */
-class DBCJSONExporter implements IDBCExporter {
-
-	/**
-	 * Exports given DBC in JSON format to given target (defaults to output stream)
-	 */
-	public function export(DBC $dbc, $target=self::OUTPUT) {
-		$map = $dbc->getMap();
-		if($map === null) {
-			throw new DBCException(self::NO_MAP);
-			return;
-		}
-
-		$data = array(
-			'fields'=>array(),
-			'records'=>array()
-			);
-
-		$fields = $map->getFields();
-		foreach($fields as $name=>$rule) {
-			$count = max($rule & 0xFF, 1);
-			if($rule & DBCMap::UINT_MASK) {
-				$type = 'uint';
-			}else if($rule & DBCMap::INT_MASK) {
-				$type = 'int';
-			}else if($rule & DBCMap::FLOAT_MASK) {
-				$type = 'float';
-			}else if($rule & DBCMap::STRING_MASK || $rule & DBCMap::STRING_LOC_MASK) {
-				$type = 'string';
-			}
-			for($i=1; $i<=$count; $i++) {
-				$suffix = ($count > 1) ? $i : '';
-				$data['fields'][$name.$suffix] = $type;
-			}
-		}
-		foreach($dbc as $record) {
-			$data['records'][] = array_values($record->extract());
-		}
-
-		file_put_contents($target, json_encode($data));
-	}
+class DBCException extends \Exception {
 
 }

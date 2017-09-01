@@ -22,6 +22,8 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
+namespace Timkurvers\WowDbcPhp;
+
 /**
  * Represents a single record in a DBC
  */

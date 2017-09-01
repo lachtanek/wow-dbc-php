@@ -22,6 +22,8 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
+namespace Timkurvers\WowDbcPhp;
+
 /**
  * Defines a set of masks used in the DBC mappings
  */

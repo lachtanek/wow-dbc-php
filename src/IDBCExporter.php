@@ -22,6 +22,8 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
+namespace Timkurvers\WowDbcPhp;
+
 /**
  * Denotes a DBC exporter
  */

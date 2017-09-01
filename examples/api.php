@@ -22,9 +22,9 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
-error_reporting(E_ALL | E_STRICT);
+use Timkurvers\WowDbcPhp\DBC;
 
-require('../lib/bootstrap.php');
+require('bootstrap.php');
 
 /**
  * This example shows basic usage of the World of Warcraft DBC Library API

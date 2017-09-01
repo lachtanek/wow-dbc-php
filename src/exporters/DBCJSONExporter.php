@@ -22,13 +22,20 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
+namespace Timkurvers\WowDbcPhp\Exporters;
+
+use Timkurvers\WowDbcPhp\IDBCExporter;
+use Timkurvers\WowDbcPhp\DBC;
+use Timkurvers\WowDbcPhp\DBCException;
+use Timkurvers\WowDbcPhp\DBCMap;
+
 /**
- * XML Exporter
+ * JSON Exporter
  */
-class DBCXMLExporter implements IDBCExporter {
+class DBCJSONExporter implements IDBCExporter {
 
 	/**
-	 * Exports given DBC in XML format to given target (defaults to output stream)
+	 * Exports given DBC in JSON format to given target (defaults to output stream)
 	 */
 	public function export(DBC $dbc, $target=self::OUTPUT) {
 		$map = $dbc->getMap();
@@ -37,12 +44,10 @@ class DBCXMLExporter implements IDBCExporter {
 			return;
 		}
 
-		$dom = new DOMDocument('1.0');
-		$dom->formatOutput = true;
-
-		$edbc = $dom->appendChild($dom->createElement('dbc'));
-		$efields = $edbc->appendChild($dom->createElement('fields'));
-		$erecords = $edbc->appendChild($dom->createElement('records'));
+		$data = array(
+			'fields'=>array(),
+			'records'=>array()
+			);
 
 		$fields = $map->getFields();
 		foreach($fields as $name=>$rule) {
@@ -58,22 +63,14 @@ class DBCXMLExporter implements IDBCExporter {
 			}
 			for($i=1; $i<=$count; $i++) {
 				$suffix = ($count > 1) ? $i : '';
-				$efields->appendChild($dom->createElement($name.$suffix, $type));
+				$data['fields'][$name.$suffix] = $type;
 			}
 		}
-		foreach($dbc as $i=>$record) {
-			$pairs = $record->extract();
-			$erecord = $erecords->appendChild($dom->createElement('record'));
-			foreach($pairs as $field=>$value) {
-				$attr = $dom->createAttribute($field);
-				$attr->value = $value;
-				$erecord->appendChild($attr);
-			}
+		foreach($dbc as $record) {
+			$data['records'][] = array_values($record->extract());
 		}
 
-		$data = $dom->saveXML();
-
-		file_put_contents($target, $data);
+		file_put_contents($target, json_encode($data));
 	}
 
 }

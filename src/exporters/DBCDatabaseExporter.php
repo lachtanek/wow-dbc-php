@@ -22,6 +22,13 @@
  * @author	Tim Kurvers <tim@moonsphere.net>
  */
 
+namespace Timkurvers\WowDbcPhp\Exporters;
+
+use Timkurvers\WowDbcPhp\IDBCExporter;
+use Timkurvers\WowDbcPhp\DBC;
+use Timkurvers\WowDbcPhp\DBCException;
+use Timkurvers\WowDbcPhp\DBCMap;
+
 /**
  * Database Exporter
  */
@@ -45,7 +52,7 @@ class DBCDatabaseExporter implements IDBCExporter {
 	/**
 	 * Constructs a new database exporter with given PDO instance (optional)
 	 */
-	public function __construct(PDO $pdo=null, $recordsPerQuery=self::RECORDS_PER_QUERY) {
+	public function __construct(\PDO $pdo=null, $recordsPerQuery=self::RECORDS_PER_QUERY) {
 		$this->setPDO($pdo);
 	}
 
